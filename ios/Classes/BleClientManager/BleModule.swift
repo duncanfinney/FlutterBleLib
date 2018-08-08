@@ -186,13 +186,7 @@ public class BleClientManager : NSObject {
     @objc
     public func startDeviceScan(_ filteredUUIDs: [String]?, options:[String:AnyObject]?) {
 
-        // iOS handles allowDuplicates option to receive more scan records.
-        var rxOptions = [String:Any]()
-        if let options = options {
-            if ((options["allowDuplicates"]?.isEqual(to: NSNumber(value: true as Bool))) ?? false) {
-                rxOptions[CBCentralManagerScanOptionAllowDuplicatesKey] = true
-            }
-        }
+        rxOptions[CBCentralManagerScanOptionAllowDuplicatesKey] = true
 
         // If passed iOS will show only devices with specified service UUIDs.
         var uuids: [CBUUID]? = nil
